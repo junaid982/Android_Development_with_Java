@@ -26,6 +26,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures{
+        //TODO step 1: Add this to use data binding in app.
+        dataBinding = true
+    }
 }
 
 dependencies {
