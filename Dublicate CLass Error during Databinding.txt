@@ -1,0 +1,32 @@
+if Dublicate class Error Occur While implementing Databinding in android Studio 
+
+
+open 
+
+build.gridle ( Module :app)
+---------------------------
+inside dependencies 
+
+add this 
+
+implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0"
+
+if Error not resolve 
+
+
+Add this inside Dependencies
+
+constraints {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
+    }
+
+
+
+
+
+
