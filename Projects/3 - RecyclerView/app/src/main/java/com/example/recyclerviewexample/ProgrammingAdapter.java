@@ -9,35 +9,42 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recyclerviewexample.interfaces.AppInterfaces;
+
 public class ProgrammingAdapter extends RecyclerView.Adapter<ProgrammingAdapter.ProgrammingViewHolder> {
 
-    private String[] data;
-    public ProgrammingAdapter(String[] data){
-        this.data = data;
+    String[] languages;
+    AppInterfaces.AdapterClick adapterClick;
+    public ProgrammingAdapter(String[] languages, AppInterfaces.AdapterClick adapterClick) {
+        this.languages = languages;
+        this.adapterClick = adapterClick;
     }
-
 
     @NonNull
     @Override
-    public ProgrammingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.list_item_layout , parent , false);
-        return new ProgrammingViewHolder(view);
+    public ProgrammingAdapter.ProgrammingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v =  LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_layout,parent , false);
+        return new ProgrammingViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProgrammingViewHolder holder, int position) {
-        String title = data[position];
-        holder.textTitle.setText(title);
+    public void onBindViewHolder(@NonNull ProgrammingAdapter.ProgrammingViewHolder holder, int position) {
+        holder.textTitle.setText(languages[position]);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapterClick.onClick(holder.getAdapterPosition());
 
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return data.length;
+        return languages.length;
     }
 
-    public class ProgrammingViewHolder extends RecyclerView.ViewHolder{
+    public class ProgrammingViewHolder extends RecyclerView.ViewHolder {
         ImageView imgIcon ;
         TextView textTitle;
         public ProgrammingViewHolder(@NonNull View itemView) {
@@ -46,5 +53,4 @@ public class ProgrammingAdapter extends RecyclerView.Adapter<ProgrammingAdapter.
             textTitle = itemView.findViewById(R.id.textTitle);
         }
     }
-
 }
