@@ -1,6 +1,7 @@
 package com.example.recyclerviewexample;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView ProgrammingList = findViewById(R.id.programming_list);
-        ProgrammingList.setLayoutManager(new LinearLayoutManager(this)); //to arrange the recycler view
+        ProgrammingList.setLayoutManager(new LinearLayoutManager( this)); //to arrange the recycler view in Linear View
+
+        //ProgrammingList.setLayoutManager(new GridLayoutManager( this,  2)); //to arrange the recycler view in Grid
         String[] languages = {"Python" , "Java" , "html" , "css" , "js" , "kotlin" , "android","Python" , "Java" , "html" , "css" , "js" , "kotlin" , "android"};
 
         ProgrammingList.setAdapter(new ProgrammingAdapter(languages , new AppInterfaces.AdapterClick() {
